@@ -1,0 +1,8 @@
+Django
+djangorestframework
+pandas
+numpy
+regex
+konlpy
+gensim
+scikit-learn
