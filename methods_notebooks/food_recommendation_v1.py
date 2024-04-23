@@ -84,8 +84,15 @@ class food_recommendation():
     curr_log = process_food_log(curr_log, wweia_synonym_cats)
 
     print("true 출력 ")
-    print(set(curr_log.loc[:,'wweia_food_category_code'].tolist()))
+    first_list = list(set(curr_log.loc[:,'wweia_food_category_code'].tolist()))
+    print(first_list)
 
     print("pred 출력 ")
-    print(set(curr_log.loc[:,'predicted_categories_number'].tolist()))
+    second_list = list(set(curr_log.loc[:,'predicted_categories_number'].tolist()))
+    print(second_list)
+    
+    print("출력 ")
+    last_list = first_list + second_list
+    last_list = list(set(last_list))
+    print(last_list)
 
