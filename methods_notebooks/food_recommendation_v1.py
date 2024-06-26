@@ -10,13 +10,13 @@ import pickle
 import math
 
 class food_recommendation():
-  PATH_NAME = 'C:/Users/woobi/Documents/habit-AI/data/'
-  PATH_NAME2 = 'C:/Users/woobi/Documents/habit-AI/'
-  # PATH_NAME = 'C:/Users/gkstk/OneDrive/Desktop/SangMin/Github/HABIT-AI/data/'
-  # PATH_NAME2 = 'C:/Users/gkstk/OneDrive/Desktop/SangMin/Github/HABIT-AI/'
+  PATH_NAME = 'C:/Users/woobi/Documents/habit/habit-AI/data/'
+  PATH_NAME2 = 'C:/Users/woobi/Documents/habit/habit-AI/'
+  # PATH_NAME = 'C:/Users/gkstk/OneDrive/Desktop/SangMin/Github/AI/data/'
+  # PATH_NAME2 = 'C:/Users/gkstk/OneDrive/Desktop/SangMin/Github/AI/'
     
   # 서버 실행시 한번만 로드 할 수 있도록 할 것
-  model = KeyedVectors.load(PATH_NAME + "한국어_음식모델_한상민.kv", mmap='r')
+  model = KeyedVectors.load(PATH_NAME + "한국어_음식모델_한상민_v2.kv", mmap='r')
     
   wweia_food_categories = pd.read_csv(PATH_NAME + 'wweia_food_categories_addtl.csv')
   wweia_data = pd.read_csv(PATH_NAME + 'wweia_data.csv')
@@ -90,4 +90,17 @@ class food_recommendation():
     last_list = first_list + second_list
     last_list = list(set(last_list))
     print(last_list)
+    
+    category_info_list = []
+    for category_num in last_list:
+        category_row = self.wweia_food_categories[self.wweia_food_categories['NO'] == category_num].iloc[0]
+        category_dict = {
+            'foodId': category_row['NO'],
+            'name': category_row['식품명'],
+            'category': category_row['식품상세분류']
+        }
+        print(category_dict)
+        category_info_list.append(category_dict)
+    
+    print(category_info_list)
 
